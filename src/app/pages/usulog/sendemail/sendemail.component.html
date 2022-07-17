@@ -1,0 +1,24 @@
+<ion-content>
+  <ion-card *ngIf="user$ | async as user; else loading">
+    <ion-card-header class="text-center">
+      <ion-card-title><strong>GRACIAS POR REGISTRARSE</strong></ion-card-title>
+      <ion-card-subtitle>Le hemos enviado un email de verificacion a: <strong>{{user?.email}}</strong>
+        <h6>Porfavor, verifica tus mensajes y confirma tu email</h6>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="text-center" style="margin-bottom: 0px; border: 0px;">
+      <ion-text>
+        <ion-button (click)="sendEmail()" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+            <h5>Enviar Verificacion de Nuevo</h5>
+        </ion-button>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ng-template #loading>
+    <div class="text-center">
+      <h3><strong>
+        Loading...
+      </strong></h3>
+    </div>
+  </ng-template>
+</ion-content>

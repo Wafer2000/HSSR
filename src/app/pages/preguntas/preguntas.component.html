@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>PREGUNTAS E INQUIETUDES</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of pagos">
+      <ion-col size="12" size-md>
+          <ion-card>
+              <div style="margin: 10px   10px;">
+                  <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado de su Duda: </strong>
+                      <h6 style="color: rgb(40, 160, 46);">Duda Revisada</h6>
+                  </h6></ion-text>
+                  <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado de su Duda:</strong>
+                      <h6 style="color: rgb(90, 0, 0);">Duda Sin Revisar</h6>
+                  </h6></ion-text>
+                  <ion-text><h6><strong>Pregunta: </strong>{{nuevos.pregunta}}</h6></ion-text>
+                  <ion-text *ngIf="nuevos.estado == true"><h6><strong>Respuesta: </strong>{{nuevos.respuesta}}</h6></ion-text>
+              </div>
+              <ion-toolbar style="margin: 0px   5px;">
+                  <ion-text><h6><strong>
+                      <div style="margin: 5px;">
+                          <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}} 
+                      </div> 
+                      <div style="margin: 5px;">
+                          <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+                      </div>
+                  </strong></h6></ion-text>
+              </ion-toolbar>
+              <ion-buttons>
+                  <ion-button (click)="nuevo = nuevos; enableNuevo = true" shape="round">
+                      <ion-icon slot="end" name="brush"></ion-icon>
+                  </ion-button>
+              </ion-buttons>
+          </ion-card>
+      </ion-col>
+  </ion-row>
+</ion-content>
+<div>
+  <ion-item-divider>
+      <ion-buttons slot="end">
+          <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+              <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <div>
+          <ion-button slot="start" *ngFor="let usuario of usuarios" (click)="nueva(usuario); enableNuevo = true" color="success" shape="round">
+              NUEVO
+          </ion-button>
+      </div>
+  </ion-item-divider>
+  <div *ngIf="enableNuevo">
+    <ion-card *ngFor="let usuario of usuarios">
+        <ion-item lines="none">
+            <ion-label position="floating">
+                <strong>Motivo de Duda</strong> 
+            </ion-label>
+            <ion-textarea area [(ngModel)]="nuevo.pregunta" enterkeyhint type="text" placeholder="Digite su Duda">
+            </ion-textarea>
+        </ion-item>
+        <ion-button (click)="guardarDuda()" color="primary" shape="round">
+            <ion-icon slot="end" name="save"></ion-icon>
+            Guardar
+        </ion-button>
+    </ion-card>
+  </div>
+</div>
+

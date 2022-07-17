@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of registro">
+    <ion-col size="12">
+      <ion-card *ngIf="nuevos.entrasali==='Salio'">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center" style="color: rgb(90, 0, 0);">
+            <strong>
+              SALIO
+            </strong>
+          </ion-card-title>
+        </ion-card-header>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>UID: </strong>{{nuevos.uid}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Nombre Completo: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Invitados: </strong>{{nuevos.invi}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Residentes: </strong>{{nuevos.resi}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+          </ion-text>
+        </div>
+      </ion-card>
+      <ion-card *ngIf="nuevos.entrasali==='Entro'">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center" style="color: rgb(40, 160, 46);">
+            <strong>
+              ENTRO
+            </strong>
+          </ion-card-title>
+        </ion-card-header>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>UID: </strong>{{nuevos.uid}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Nombre Completo: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Invitados: </strong>{{nuevos.invi}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Residentes: </strong>{{nuevos.resi}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Fecha de Entrada: </strong>{{nuevos.fecha}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Hora de Entrada: </strong>{{nuevos.hora}}</h6>
+          </ion-text>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+

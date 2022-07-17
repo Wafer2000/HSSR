@@ -1,0 +1,90 @@
+<ion-header>
+  <div>
+    <ion-toolbar>
+      <ion-text><h5><strong>Pagos Residentes</strong></h5></ion-text>
+      <ion-buttons slot="start">
+        <ion-button (click)="openmenu()">
+            <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+</ion-header>
+<ion-content>
+    <ion-row *ngFor="let nuevos of pagos">
+        <ion-col size="12" size-md>
+            <ion-card>
+                <div style="margin: 10px   10px;">
+                    <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado de Pago: </strong>
+                        <h6 style="color: rgb(40, 160, 46);">Pago Autorizado</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado de Pago:</strong>
+                        <h6 style="color: rgb(90, 0, 0);">Pago No Autorizado</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == null"><h6><strong>Estado de Pago:</strong>
+                        <h6 style="color: rgb(240, 210, 39);">Pago Sin Revisar</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == false"><h6><strong>Causa de No Atorizo: </strong>{{nuevos.causa}}</h6></ion-text>
+                    <ion-text><h6><strong>Pagado por: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6></ion-text>
+                    <ion-text><h6><strong>Numero del Comprobante: </strong>{{nuevos.numcomprob}}</h6></ion-text>
+                    <ion-text><h6><strong>Cantidad Abonada: </strong>{{nuevos.canti | currency: '$ '}}</h6></ion-text>
+                    <ion-text><h6><strong>Motivo de Pago: </strong>{{nuevos.motiv}}</h6></ion-text>
+                </div>
+                <ion-toolbar style="margin: 0px   5px;">
+                    <ion-text><h6><strong>
+                        <div style="margin: 5px;">
+                            <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}} 
+                        </div> 
+                        <div style="margin: 5px;">
+                            <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+                        </div>
+                    </strong></h6></ion-text>
+                </ion-toolbar>
+                <ion-buttons>
+                    <ion-button (click)="nuevo = nuevos; enableNuevo = false" shape="round">
+                        <ion-icon slot="end" name="brush"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>
+<div style="background: #c4c4c4;">
+    <ion-item class="item-content">
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="enableNuevo = true" shape="round">
+                <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+    <div *ngIf="!enableNuevo">
+        <ion-card>
+            <ion-item>
+                <ion-label><strong>Estado:</strong> </ion-label>
+                <ion-toggle name="estado" [(ngModel)]="nuevo.estado"></ion-toggle>
+            </ion-item>
+            <ion-item *ngIf="nuevo.estado==false">
+              <ion-label position="floating">Causa</ion-label>
+              <ion-select [(ngModel)]="nuevo.causa" interface="popover">
+                <ion-select-option value="Entrega Tardia">Entrega Tardia</ion-select-option>
+                <ion-select-option value="Cantidad Erronea">Cantidad Erronea</ion-select-option>
+                <ion-select-option value="Motivo No Valido">Motivo No Valido</ion-select-option>
+                <ion-select-option value="Comprobante Incorrecto">Comprobante Incorrecto</ion-select-option>
+                <ion-select-option value="Otro">Otro</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"><h6><strong>Residente:</strong></h6></ion-label>
+                <ion-text boolean="true">
+                    <ion-input disabled name="nombres" type="text" [(ngModel)]="nuevo.nombres+' '+nuevo.apellidos" ></ion-input>
+                </ion-text>
+            </ion-item>
+            <ion-button (click)="guardarPago()" color="primary" shape="round">
+                <label>
+                    <ion-icon name="save"></ion-icon>
+                    Actualizar
+                </label>
+            </ion-button>
+      </ion-card>
+    </div>
+</div>

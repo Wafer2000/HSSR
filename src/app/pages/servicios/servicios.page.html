@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>SERVICIOS</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalGim()">
+        <ion-card-header>
+          <img class="image" src="/assets/img/gimnasio.jpeg">
+          <ion-card-title>Gimnasio</ion-card-title>
+        </ion-card-header>
+        <ion-item *ngFor="let nuevos of gimnasio">
+          <ion-text *ngIf="nuevos.cupo">
+            <h6><strong>
+              Reservado para: {{nuevos.cupo}}
+            </strong></h6>
+          </ion-text>
+          <ion-text *ngIf="!nuevos.cupo">
+            <h6><strong>
+              No hay cupos reservados
+            </strong></h6>
+          </ion-text>
+        </ion-item>
+        <ion-card-content>
+          <ion-text><h6>
+            Es un lugar que permite practicar deportes o hacer ejercicio en un recinto cerrado 
+            con varias máquinas y artículos deportivos a disposición de quienes lo visiten.
+          </h6></ion-text>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalRecre()">
+        <ion-card-header>
+          <img class="image" src="/assets/img/recreacion.JPG">
+          <ion-card-title>Centro de Recreacion</ion-card-title>
+        </ion-card-header>
+        <ion-item *ngFor="let nuevos of recreacion">
+          <ion-text *ngIf="nuevos.cupo">
+            <h6><strong>
+              Reservado para: {{nuevos.cupo}}
+            </strong></h6>
+          </ion-text>
+          <ion-text *ngIf="!nuevos.cupo">
+            <h6><strong>
+              No hay cupos reservados
+            </strong></h6>
+          </ion-text>
+        </ion-item>
+        <ion-card-content>
+          <ion-text><h6>
+            Lugar apto para eventos recreativos
+          </h6></ion-text>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalPisc()">
+        <ion-card-header>
+          <img class="image" src="/assets/img/piscina.jpg">
+          <ion-card-title>Piscina</ion-card-title>
+        </ion-card-header>
+        <ion-item *ngFor="let nuevos of piscina">
+          <ion-text *ngIf="nuevos.cupo">
+            <h6><strong>
+              Reservado para: {{nuevos.cupo}}
+            </strong></h6>
+          </ion-text>
+          <ion-text *ngIf="!nuevos.cupo">
+            <h6><strong>
+              No hay cupos reservados
+            </strong></h6>
+          </ion-text>
+        </ion-item>
+        <ion-card-content>
+          <ion-text><h6>
+            Establecimiento con una barra de bar y mesas en el que se sirven café, bebidas y 
+            ciertos alimentos.
+          </h6></ion-text>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+

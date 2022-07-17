@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Apartar Cupo</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <img class="image" src="/assets/img/piscina.jpg">
+      <ion-card-title>Piscina</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text><h6>
+        Establecimiento con una barra de bar y mesas en el que se sirven café, bebidas y 
+        ciertos alimentos.
+      </h6></ion-text>
+      <div *ngFor="let nuevos of modelos">
+        <app-vspiscina [modelos]=nuevos></app-vspiscina>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

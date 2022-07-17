@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+        <ion-text><h5><strong>Listado de Usuarios</strong></h5></ion-text>
+        <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <ion-row *ngFor="let nuevos of registros">
+            <ion-col size="12" size-md>
+              <ion-card>
+                <ion-avatar>
+                  <img src={{nuevos.foto}}>
+                </ion-avatar>
+                <ion-item *ngIf="nuevos.posi==true">
+                  <label>
+                    <ion-text><h6><strong>POR DENTRO DEL CONJUNTO RESIDENCIAL</strong></h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item *ngIf="nuevos.posi==false">
+                  <label>
+                    <ion-text><h6><strong>POR FUERA DEL CONJUNTO RESIDENCIAL</strong></h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>UID: </strong>{{nuevos.uid}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>Numero de Identificacion: </strong>{{nuevos.numidenti}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>Cuenta: </strong>{{nuevos.email}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <label>
+                    <ion-text><h6><strong>Numero de Casa*: </strong>{{nuevos.casa}}</h6></ion-text>
+                  </label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <ion-text><h6><strong>Fecha de Nacimiento: </strong>{{nuevos.fechanacimiento}}</h6></ion-text>
+                  </ion-label>
+                </ion-item>
+              </ion-card>
+            </ion-col>
+        </ion-row>
+</ion-content>

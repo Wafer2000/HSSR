@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Cupos</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of registro">
+    <ion-col size="12">
+      <ion-card *ngIf="nuevos.apartasino==='Desaparto Cupo'">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center" style="color: rgb(90, 0, 0);">
+            <strong>
+              DESAPARTO
+            </strong>
+          </ion-card-title>
+        </ion-card-header>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>UID: </strong>{{nuevos.uid}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Nombre Completo: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Fecha: </strong>{{nuevos.fecha}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Hora: </strong>{{nuevos.hora}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(90, 0, 0);">
+            <h6><strong>Cupos Desapartados: </strong>{{nuevos.cant}}</h6>
+          </ion-text>
+        </div>
+      </ion-card>
+      <ion-card *ngIf="nuevos.apartasino==='Aparto Cupo'">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center" style="color: rgb(40, 160, 46);">
+            <strong>
+              APARTO
+            </strong>
+          </ion-card-title>
+        </ion-card-header>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>UID: </strong>{{nuevos.uid}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Nombre Completo: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Fecha: </strong>{{nuevos.fecha}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Hora: </strong>{{nuevos.hora}}</h6>
+          </ion-text>
+        </div>
+        <div style="margin: 10px   10px;">
+          <ion-text style="color: rgb(40, 160, 46);">
+            <h6><strong>Cupos Apartados: </strong>{{nuevos.cant}}</h6>
+          </ion-text>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

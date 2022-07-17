@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-row *ngFor="let nuevos of notification">
+        <ion-col size="12" size-md>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>{{nuevos.titulo}}</ion-card-title>
+              </ion-card-header>
+              <div style="margin: 10px   10px;">
+                <ion-text><h6><strong>Cuerpo del mensaje: </strong>{{nuevos.cuerpo}}</h6></ion-text>
+                <ion-text><h6><strong>Informacion Extra: </strong>{{nuevos.data}}</h6></ion-text>
+                <ion-text><h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6></ion-text>
+              </div>
+              <ion-toolbar style="margin: 0px   5px;">
+                  <ion-text><h6><strong>
+                      <div style="margin: 5px;">
+                          <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}} 
+                      </div> 
+                      <div style="margin: 5px;">
+                          <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+                      </div>
+                  </strong></h6></ion-text>
+              </ion-toolbar>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>

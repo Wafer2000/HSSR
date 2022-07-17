@@ -1,0 +1,139 @@
+<ion-app>
+  <div *ngIf="uid.length">
+    <ion-menu contentId="main" menuId="menu">
+    <ion-header>
+        <ion-toolbar>
+          <ion-avatar>
+            <img src={{registro.foto}}>
+          </ion-avatar>
+          <ion-menu-toggle>
+            <ion-item button=true [routerLink]="['/perfil']" lines="none" color="primary">
+              <ion-icon slot="start" name="person-circle"></ion-icon>
+              <label>
+                <ion-text><strong>{{registro.nombres}}</strong></ion-text>
+                <ion-text><strong> {{registro.apellidos}}</strong></ion-text>
+              </label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle>
+          <ion-list style="background-color: rgb(202, 202, 202);">
+            <ion-item button=true [routerLink]="['/noticias']" lines="none">
+              <ion-toolbar class="normal">
+                <ion-text><strong>Noticias</strong></ion-text>
+              </ion-toolbar>
+              <ion-icon slot="start" name="globe-sharp"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/servicios']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Servicios</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="map"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/pagos']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Registro de Pagos</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="receipt"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/crearinvi']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Tus Invitados</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="person-add"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/compromisos']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Compromisos</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/preguntas']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Solicitudes</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="help-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngIf="admin" style="background-color: rgb(202, 202, 202);">
+            <ion-list-header>
+              <ion-text><strong>Seccion de Administrador</strong></ion-text>
+            </ion-list-header>
+            <ion-item button=true [routerLink]="['/respuestas']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Responder a Dudas</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="bulb-outline"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/adnoticias']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Administracion Noticias</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="globe"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/adpagos']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Pagos de Residentes</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="cash-outline"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/residentes']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Listado de Usuarios</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="people"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/invitados']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Invitados</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="person-add"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/repprincipal']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Puerta Principal</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="enter-sharp"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/reparqueadero']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Parqueadero</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="car"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/regimnasio']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Gimnasio</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="barbell"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/repiscina']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Piscina</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="help-buoy-sharp"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/rerecreacion']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Centro de Recreacion</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="bicycle-sharp"></ion-icon>
+            </ion-item>
+            <ion-item button=true [routerLink]="['/reportes']" lines="none">
+              <ion-label class="normal">
+                <ion-text><strong>Reportes</strong></ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
+            </ion-item>
+          </ion-list>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+  </div>
+  <div *ngIf="!uid.length">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-app>

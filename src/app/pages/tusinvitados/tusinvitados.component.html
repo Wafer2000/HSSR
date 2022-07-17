@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar>
+        <ion-text><h5><strong>Crear Invitado</strong></h5></ion-text>
+        <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of invitados">
+    <ion-col size="12" size-md>
+      <ion-card>
+        <div style="margin: 10px   10px;">
+          <div style="margin: 10px   10px;">
+            <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado: </strong>
+              <h6 style="color: rgb(40, 160, 46);" >{{nuevos.tipo}} Autorizado</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.estado == null"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Nombre del Residente: </strong>{{nuevos.rnombres}} {{nuevos.rapellidos}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Nombre del Invitado: </strong>{{nuevos.inombres}} {{nuevos.iapellidos}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Cedula del Invitado: </strong>{{nuevos.cedula}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Tipo de Invitado: </strong>{{nuevos.tipo}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text *ngIf="nuevos.finvitado == true"><h6><strong>Tipo: </strong>
+              <h6 style="color: rgb(40, 160, 46);" >Regular</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.finvitado == false"><h6><strong>Tipo:</strong>
+              <h6 style="color: rgb(90, 0, 0);">Irregular</h6>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>
+              <div style="margin: 5px;">
+                <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}}
+              </div>
+              <div style="margin: 5px;">
+                  <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+              </div> 
+            </strong></h6></ion-text>
+          </div>
+        </div>
+        <ion-buttons>
+          <ion-button (click)="CodificarTexto(nuevos)" color="dark" shape="round">
+            <ion-icon name="qr-code"></ion-icon>
+          </ion-button>
+          <ion-button (click)="nuevo = nuevos; enableNuevo = true" shape="round">
+            <ion-icon slot="end" name="brush"></ion-icon>
+          </ion-button>
+          <ion-button (click)="deleteInvitados(nuevos)" shape="round">
+            <ion-icon slot="end" color="danger" name="trash-bin"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<div style="background: #c4c4c4;">
+  <ion-item>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div>
+      <ion-button slot="start" (click)="nueva(); enableNuevo = true" color="success" class="normal" shape="round">
+        Agregar
+      </ion-button>
+    </div>
+  </ion-item>
+  <div *ngIf="enableNuevo">
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating"><h6><strong>
+          Tipo de Invitado:
+        </strong></h6></ion-label>
+        <ion-select [(ngModel)]="nuevo.tipo" interface="popover">
+          <ion-select-option value="Domiciliario">Domiciliario</ion-select-option>
+          <ion-select-option value="Visitante">Visitante</ion-select-option>
+          <ion-select-option value="Prestador de servicio">Prestador de servicio</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label><h6><strong>
+          Frecuencia:
+        </strong></h6></ion-label>
+          Irregular<ion-toggle name="estado" [(ngModel)]="nuevo.finvitado"></ion-toggle>Regular
+      </ion-item>
+      <ion-item>
+          <ion-label><h6><strong
+            >Estado:
+          </strong></h6></ion-label>
+          No Autorizado<ion-toggle name="estado" [(ngModel)]="nuevo.estado"></ion-toggle>Autorizado
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text><h6><strong>
+            Cedula:
+          </strong></h6></ion-text> 
+        </ion-label>
+        <ion-input [(ngModel)]="nuevo.cedula" type="number" imputmode="number">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text><h6><strong>
+            Nombres:
+          </strong></h6></ion-text> 
+        </ion-label>
+        <ion-input [(ngModel)]="nuevo.inombres" type="text" imputmode="text">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+          <ion-text><h6><strong>
+            Apellidos:
+          </strong></h6></ion-text> 
+        </ion-label>
+        <ion-input [(ngModel)]="nuevo.iapellidos" type="text" imputmode="text">
+        </ion-input>
+      </ion-item>
+      <ion-button *ngFor="let registros of registro" (click)="crearInvitado(registros); enableNuevo = false" color="primary" class="normal" shape="round">
+        <ion-icon slot="end" name="save"></ion-icon>
+        Guardar
+      </ion-button>
+    </ion-card>
+  </div>
+</div>

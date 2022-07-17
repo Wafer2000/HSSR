@@ -1,0 +1,106 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-text><h5><strong>Administracion de Noticias</strong></h5></ion-text>
+        <ion-buttons slot="start">
+            <ion-button (click)="openmenu()">
+                <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="body" *ngFor="let nuevos of noticias">
+        <div class="card">
+            <div class="ion-no-border" class="face front">
+                <h3><strong>
+                    {{nuevos.encabezado}}
+                </strong></h3>
+                <ion-toolbar style="margin: 0px   5px;">
+                    <ion-text><h6><strong>
+                        <div style="margin: 5px;">
+                            <ion-icon name="calendar"></ion-icon>
+                            {{nuevos.fecha}} 
+                        </div> 
+                        <div style="margin: 5px;">
+                            <ion-icon name="time"></ion-icon>
+                            {{nuevos.hora}}
+                        </div>
+                    </strong></h6></ion-text>
+                </ion-toolbar>
+            </div>
+            <div class="face back">
+                <h3><strong>
+                    {{nuevos.encabezado}}
+                </strong></h3>
+                <ion-text><p>
+                    {{nuevos.mensaje}}
+                </p></ion-text>
+            </div>
+        </div>
+    </div>
+    <ion-row *ngFor="let nuevos of noticias">
+        <ion-col size="12" size-md>
+            <ion-card>
+                <div style="margin: 20px   20px;">
+                    <ion-text class="ion-text-center"><h4><strong>
+                        {{nuevos.encabezado}}
+                    </strong></h4></ion-text>
+                </div>
+                <div style="margin: 20px   20px;">
+                    <ion-text><h6>
+                        {{nuevos.mensaje}}
+                    </h6></ion-text>
+                </div>
+                <ion-toolbar style="margin: 0px   10px;">
+                    <ion-text><h6><strong>
+                        <div style="margin: 5px;">
+                            <ion-icon name="calendar"></ion-icon>
+                            {{nuevos.fecha}} 
+                        </div> 
+                        <div style="margin: 5px;">
+                            <ion-icon name="time"></ion-icon>
+                            {{nuevos.hora}}
+                        </div>
+                    </strong></h6></ion-text>
+                </ion-toolbar>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>
+<div style="background: #c4c4c4;">
+    <ion-item>
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+                <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <div>
+            <ion-button slot="start" (click)="nueva(); enableNuevo = true" color="success" class="normal" shape="round">
+                Crear
+            </ion-button>
+        </div>
+    </ion-item>
+    <div *ngIf="enableNuevo">
+        <ion-card>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Encabezado:</strong> 
+                </ion-label>
+                <ion-input [(ngModel)]="nuevo.encabezado" type="text" imputmode="text">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Mensaje:</strong> 
+                </ion-label>
+              <ion-textarea [(ngModel)]="nuevo.mensaje" enterkeyhint type="text" placeholder="Digite la pregunta">
+              </ion-textarea>
+            </ion-item>
+            <ion-button (click)="createNoticia(); enableNuevo = false" color="primary" class="normal" shape="round">
+                <ion-icon name="save"></ion-icon>
+                Guardar
+            </ion-button>
+        </ion-card>
+    </div>
+</div>

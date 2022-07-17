@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Apartar Cupo</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <img class="image" src="/assets/img/recreacion.JPG">
+      <ion-card-title>Centro de Recreacion</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text><h6>
+        Lugar apto para eventos recreativos
+      </h6></ion-text>
+      <div *ngFor="let nuevos of modelos">
+        <app-vsrecreacion [modelos]=nuevos></app-vsrecreacion>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

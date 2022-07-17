@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>COMPROMISOS</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md>
+      <ion-card>
+        <div style="margin: 20px   20px;">
+          <ion-text class="ion-text-center"><h6><strong>
+            En caso tal no vea algun compromiso, es porque no tiene ninguno pendiente en estos momentos
+          </strong></h6></ion-text>
+        </div>
+      </ion-card>
+      <ion-card *ngFor="let actualiza of actualizarGim">
+        <div style="margin: 20px   20px;">
+          <ion-text class="ion-text-center"><h5><strong>
+            GIMNASIO
+          </strong></h5></ion-text>
+        </div>
+        <div size="12" size-md style="margin: 10px   10px;" *ngFor="let compromiso of gimnasio">
+          <ion-card style="background: #f1f1f1;">
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Hora: </strong> {{compromiso.hcupo}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Residentes: </strong> {{compromiso.resi}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Invitados: </strong> {{compromiso.invi}}
+              </h6></ion-text>
+            </div>
+            <ion-toolbar style="margin: 0px   5px; --background: #f1f1f1;">
+                <ion-text><h6><strong>
+                    <div style="margin: 5px;">
+                        <ion-icon name="calendar"></ion-icon>
+                        {{compromiso.fecha}} 
+                    </div> 
+                    <div style="margin: 5px;">
+                        <ion-icon name="time"></ion-icon>
+                        {{compromiso.hora}}
+                    </div>
+                </strong></h6></ion-text>
+                <ion-buttons slot="end" style="margin: 0px   5px;">
+                  <ion-button (click)="deleteCupoGim(compromiso, actualiza);" color="dark" shape="round">
+                    <ion-icon color="danger" name="trash-bin"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+          </ion-card>
+        </div>
+      </ion-card>
+      <ion-card *ngFor="let actualiza of actualizarPisc">
+        <div style="margin: 20px   20px;">
+          <ion-text class="ion-text-center"><h5><strong>
+            PISCINA
+          </strong></h5></ion-text>
+        </div>
+        <div size="12" size-md style="margin: 10px   10px;" *ngFor="let compromiso of piscina">
+          <ion-card style="background: #f1f1f1;">
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Hora: </strong>{{compromiso.hcupo}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Residentes: </strong> {{compromiso.resi}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Invitados: </strong> {{compromiso.invi}}
+              </h6></ion-text>
+            </div>
+            <ion-toolbar style="margin: 0px   5px; --background: #f1f1f1;">
+                <ion-text><h6><strong>
+                    <div style="margin: 5px;">
+                        <ion-icon name="calendar"></ion-icon>
+                        {{compromiso.fecha}} 
+                    </div> 
+                    <div style="margin: 5px;">
+                        <ion-icon name="time"></ion-icon>
+                        {{compromiso.hora}}
+                    </div>
+                </strong></h6></ion-text>
+                <ion-buttons slot="end" style="margin: 0px   5px;">
+                  <ion-button (click)="deleteCupoPisc(compromiso, actualiza);" color="dark" shape="round">
+                    <ion-icon color="danger" name="trash-bin"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+          </ion-card>
+        </div>
+      </ion-card>
+      <ion-card *ngFor="let actualiza of actualizarRecre">
+        <div style="margin: 20px   20px;">
+          <ion-text class="ion-text-center"><h5><strong>
+            CENTRO DE RECREACION
+          </strong></h5></ion-text>
+        </div>
+        <div size="12" size-md style="margin: 10px   10px;" *ngFor="let compromiso of recreacion">
+          <ion-card style="background: #f1f1f1;">
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Hora: </strong> {{compromiso.hcupo}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Residentes: </strong> {{compromiso.resi}}
+              </h6></ion-text>
+            </div>
+            <div style="margin: 20px   20px;">
+              <ion-text><h6>
+                <strong>Invitados: </strong> {{compromiso.invi}}
+              </h6></ion-text>
+            </div>
+            <ion-toolbar style="margin: 0px   5px; --background: #f1f1f1;">
+                <ion-text><h6><strong>
+                    <div style="margin: 5px;">
+                        <ion-icon name="calendar"></ion-icon>
+                        {{compromiso.fecha}} 
+                    </div> 
+                    <div style="margin: 5px;">
+                        <ion-icon name="time"></ion-icon>
+                        {{compromiso.hora}}
+                    </div>
+                </strong></h6></ion-text>
+                <ion-buttons slot="end" style="margin: 0px   5px;">
+                  <ion-button (click)="deleteCupoRecre(compromiso, actualiza);" color="dark" shape="round">
+                    <ion-icon color="danger" name="trash-bin"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+          </ion-card>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>RECREACION</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md>
+      <ion-card>
+        <ion-card-header class="ion-text-center">
+          <ion-card-title>
+            <strong>Informacion de Pestañas</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="scan"></ion-icon> 
+            <strong>Escaner</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Herramienta para buscar en al base de datos si la persona(Residente o Invitado) existe para permitirle o no el ingreso
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="reader-outline"></ion-icon> 
+            <strong>Registro</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Registro global de la entrada por el Piscina por parte de Residentes e Invitados
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="ticket-outline"></ion-icon> 
+            <strong>Cupos</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Cantidad de reservaciones dentro del Piscina hasta la hora actual.
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="calendar-outline"></ion-icon> 
+            <strong>Horarios</strong>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Horarios implementados por el administrador para controlar el flujo de personas en el Piscina
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="scanner">
+        <ion-icon name="scan"></ion-icon>
+        <ion-label>Escaner</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="registro">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-label>Registro</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="cupos">
+        <ion-icon name="ticket-outline"></ion-icon>
+        <ion-label>Cupos</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="horarios">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>Horarios</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>
+
+

@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button expand="block" color="dark" (click)="scaner()">Escanear Código</ion-button>
+  <ion-row *ngFor="let nuevos of invitados">
+    <ion-col size="12" size-md>
+        <ion-card>
+          <div style="padding: 10px">
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Cedula del Invitado: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.cedula" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Tipo de Invitado: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.tipo" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Nombres y Apellidos del Invitado: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.inombres+' '+nuevos.iapellidos" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Fecha cuando se añadio: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.fecha" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Hora cuando se añadio: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.hora" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text><h6><strong>Residente el cual lo invito: </strong>
+                <ion-input disabled type="text" [(ngModel)]="nuevos.rnombres+' '+nuevos.rapellidos" ></ion-input>
+              </h6></ion-text>
+            </div>
+            <div lines="none" style="margin: 10px   10px;">
+                <ion-label position="floating">
+                  <strong>Placa del Auto</strong>
+                </ion-label>
+                <ion-input [(ngModel)]="auto" type="text" placeholder="Digite la cantidad abonada">
+                </ion-input>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text *ngIf="nuevos.finvitado == true"><h6><strong>Frecuencia: </strong>
+                <h6 style="color: rgb(40, 160, 46);" >Regular</h6>
+              </h6></ion-text>
+              <ion-text *ngIf="nuevos.finvitado == null"><h6><strong>Frecuencia: </strong>
+                <h6 style="color: rgb(90, 0, 0);">Irregular</h6>
+              </h6></ion-text>
+              <ion-text *ngIf="nuevos.finvitado == false"><h6><strong>Frecuencia: </strong>
+                <h6 style="color: rgb(90, 0, 0);">Irregular</h6>
+              </h6></ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado: </strong>
+                <h6 style="color: rgb(40, 160, 46);" >{{nuevos.tipo}} Autorizado</h6>
+              </h6></ion-text>
+              <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado:</strong>
+                <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+              </h6></ion-text>
+              <ion-text *ngIf="nuevos.estado == null"><h6><strong>Estado:</strong>
+                <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+              </h6></ion-text>
+            </div>
+          </div>
+          <ion-buttons>
+            <ion-button (click)="EntradaInvi(nuevos, auto)" color="success" shape="round">
+              <ion-icon name="log-in-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="nuevos.finvitado == true" (click)="SalidaInvi(nuevos, auto)" color="danger" shape="round">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="nuevos.finvitado == false" (click)="SalidaInvi(nuevos, auto); deleteInvi(nuevos)" color="danger" shape="round">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="nuevos.finvitado == null" (click)="SalidaInvi(nuevos, auto); deleteInvi(nuevos)" color="danger" shape="round">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row style="background: #c4c4c4;" *ngFor="let nueves of usuarios">
+    <ion-col  *ngIf="residente" size="12" size-md>
+      <ion-card>
+        <div style="padding: 10px">
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>ID Residente: </strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.uid" ></ion-input>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Nombres y Apellidos del Residente: </strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.nombres+' '+nueves.apellidos" ></ion-input>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Numero de Identifiacion: </strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.numidenti" ></ion-input>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Cuenta: </strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.email" ></ion-input>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Numero de Casa: </strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.casa"></ion-input>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Fecha de Nacimiento:</strong>
+              <ion-input disabled type="text" [(ngModel)]="nueves.fechanacimiento" ></ion-input>
+            </h6></ion-text>
+          </div>
+          <div lines="none" style="margin: 10px   10px;">
+              <ion-label position="floating">
+                  <strong>Placa del Auto</strong>
+              </ion-label>
+              <ion-input [(ngModel)]="auto" type="number" placeholder="Digite la cantidad abonada">
+              </ion-input>
+          </div>
+        </div>
+        <ion-buttons>
+          <ion-button (click)="EntradaResi(nueves, auto)" color="success" shape="round">
+            <ion-icon name="log-in-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="SalidaResi(nueves, auto)" color="danger" shape="round">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

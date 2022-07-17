@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "11850936888",
+    "project_id": "hssr-2223",
+    "storage_bucket": "hssr-2223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11850936888:android:8c9d9a195f58a83ac96ccd",
+        "android_client_info": {
+          "package_name": "com.apescorporation.hssr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11850936888-4uosmlab0cu6atkovkaroh3nr3pr4qgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAq8MJXjxNncw2xGBAICRXjYGrQ_lhTFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11850936888-4uosmlab0cu6atkovkaroh3nr3pr4qgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

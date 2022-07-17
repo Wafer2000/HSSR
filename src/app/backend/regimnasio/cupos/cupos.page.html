@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentModal()">
+      <ion-icon name="reader-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-row style="background: #c4c4c4;" *ngFor="let compromiso of compromisos">
+    <ion-col *ngFor="let actualiza of actualizar" size="12" size-md>
+      <ion-card style="background: #f1f1f1;">
+        <div style="margin: 10px   10px;">
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Residente: </strong>{{compromiso.nombres}} {{compromiso.apellidos}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Cupos: </strong></h6>
+              <h6>Residentes: {{compromiso.resi}}</h6>
+              <h6>Invitados: {{compromiso.invi}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Hora: </strong>{{compromiso.hcupo}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>
+              <div style="margin: 5px;">
+                <ion-icon name="calendar"></ion-icon>{{compromiso.fecha}}
+              </div>
+              <div style="margin: 5px;">
+                  <ion-icon name="time"></ion-icon>{{compromiso.hora}}
+              </div> 
+            </strong></h6></ion-text>
+          </div>
+          <ion-buttons slot="end">
+            <ion-button (click)="deleteCupo(compromiso, actualiza)" shape="round">
+              <ion-icon slot="end" color="danger" name="trash-bin"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
