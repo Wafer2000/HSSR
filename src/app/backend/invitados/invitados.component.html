@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-text><h5><strong>INVITADOS</strong></h5></ion-text>
+      <ion-buttons slot="start">
+          <ion-button (click)="openmenu()">
+              <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of invitados">
+    <ion-col size="12" size-md>
+      <ion-card>
+        <div style="margin: 10px   10px;">
+          <div style="margin: 10px   10px;">
+            <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado: </strong>
+              <h6 style="color: rgb(40, 160, 46);" >{{nuevos.tipo}} Autorizado</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.estado == null"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">{{nuevos.tipo}} No Autorizado</h6>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Residente: </strong>{{nuevos.rnombres}} {{nuevos.rapellidos}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Invitado: </strong>{{nuevos.inombres}} {{nuevos.iapellidos}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text>
+              <h6><strong>Tipo de Invitado: </strong>{{nuevos.tipo}}</h6>
+            </ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text *ngIf="nuevos.finvitado == true"><h6><strong>Estado: </strong>
+              <h6 style="color: rgb(40, 160, 46);" >Regular</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.finvitado == false"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">Irregular</h6>
+            </h6></ion-text>
+            <ion-text *ngIf="nuevos.finvitado == null"><h6><strong>Estado:</strong>
+              <h6 style="color: rgb(90, 0, 0);">Irregular</h6>
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>
+              <div style="margin: 5px;">
+                <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}}
+              </div>
+              <div style="margin: 5px;">
+                  <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+              </div> 
+            </strong></h6></ion-text>
+          </div>
+        </div>
+        <ion-buttons>
+          <ion-button (click)="CodificarTexto(nuevos)" color="dark" shape="round">
+            <ion-icon name="qr-code"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

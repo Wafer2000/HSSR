@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Apartar Cupo</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <img class="image" src="/assets/img/gimnasio.jpeg">
+      <ion-card-title>Gimnasio</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text><h6>
+        Es un lugar que permite practicar deportes o hacer ejercicio en un recinto cerrado 
+        con varias máquinas y artículos deportivos a disposición de quienes lo visiten.
+      </h6></ion-text>
+      <div *ngFor="let nuevos of modelos">
+        <app-vsgimnasio [modelos]=nuevos></app-vsgimnasio>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

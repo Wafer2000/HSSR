@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HSSR</string>
+    <string name="title_activity_main">HSSR</string>
+    <string name="package_name">com.apescorporation.hssr</string>
+    <string name="custom_url_scheme">com.apescorporation.hssr</string>
+</resources>

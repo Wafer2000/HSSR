@@ -1,0 +1,7 @@
+{
+  "name": "HSSR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

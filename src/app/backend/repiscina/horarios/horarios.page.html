@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngFor="let nuevos of horarios">
+      <ion-col size="12" size-md>
+        <ion-card>
+          <ion-toolbar style="margin: 0px   10px;">
+              <ion-text class="ion-text-center"><h6><strong>
+                  <div style="margin: 5px;">
+                      <ion-icon name="time"></ion-icon>
+                      {{nuevos.hinicial}} - {{nuevos.hfinal}}
+                  </div>
+              </strong></h6></ion-text>
+              <ion-buttons slot="end" style="margin: 0px   5px;">
+                  <ion-button (click)="deleteHorario(nuevos)" shape="round">
+                    <ion-icon color="danger" name="trash-bin"></ion-icon>
+                  </ion-button>
+              </ion-buttons>
+          </ion-toolbar>
+        </ion-card>
+      </ion-col>
+  </ion-row>
+</ion-content>
+
+<div style="background: #c4c4c4;">
+  <ion-item>
+      <ion-buttons slot="end">
+          <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+              <ion-icon name="close-circle"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-button (click)="nueva(); enableNuevo = true" color="success" class="normal" shape="round">
+          Crear
+        </ion-button>
+      </ion-buttons>
+  </ion-item>
+  <div *ngIf="enableNuevo">
+    <ion-card>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label><strong>Hora Inicial: </strong></ion-label>
+            <ion-input format="en-US" [value]="nuevo.hinicial"></ion-input>
+            <ion-button fill="clear" id="open-hinicial-piscina">
+              <ion-icon color="success" icon="time"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-hinicial-piscina" show-backdrop="false">
+              <ng-template>
+                <ion-datetime
+                  #popoverDatetime
+                  presentation="time"
+                  (ionChange)="nuevo.hinicial = formatDate(popoverDatetime.value)"
+                >
+                </ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label><strong>Hora Final: </strong></ion-label>
+            <ion-input format="en-US" [value]="nuevo.hfinal"></ion-input>
+            <ion-button fill="clear" id="open-hfinal-piscina">
+              <ion-icon color="danger" icon="time"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-hfinal-piscina" show-backdrop="false">
+              <ng-template>
+                <ion-datetime
+                  #popoverDatetime
+                  presentation="time"
+                  (ionChange)="nuevo.hfinal = formatDate(popoverDatetime.value)"
+                >
+                </ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-button (click)="createHorario(); enableNuevo = false" color="primary" class="normal" shape="round">
+        <ion-icon name="save"></ion-icon>
+        Guardar
+      </ion-button>
+    </ion-card>
+  </div>
+</div>

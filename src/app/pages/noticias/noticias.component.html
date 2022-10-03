@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-text><h5><strong>NOTICIAS</strong></h5></ion-text>
+        <ion-buttons slot="start">
+            <ion-button (click)="openmenu()">
+                <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row *ngFor="let nuevos of noticias">
+        <ion-col size="12" size-md>
+            <ion-card>
+                <div style="margin: 20px   20px;">
+                    <ion-text class="ion-text-center"><h3><strong>
+                        {{nuevos.encabezado}}
+                    </strong></h3></ion-text>
+                </div>
+                <div style="margin: 20px   20px;">
+                    <ion-text><h6>
+                        {{nuevos.mensaje}}
+                    </h6></ion-text>
+                </div>
+                <ion-toolbar style="margin: 0px   5px;">
+                    <ion-text><h6><strong>
+                        <div style="margin: 5px;">
+                            <ion-icon name="calendar"></ion-icon>
+                            {{nuevos.fecha}} 
+                        </div> 
+                        <div style="margin: 5px;">
+                            <ion-icon name="time"></ion-icon>
+                            {{nuevos.hora}}
+                        </div>
+                    </strong></h6></ion-text>
+                </ion-toolbar>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>

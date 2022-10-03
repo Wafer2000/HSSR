@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"><strong>INGRESE</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ingrese los datos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-row>
+      <ion-col>
+        <ion-item *ngIf="!ingresarEnable">
+          <ion-label position="floating"><h6><strong>Nombres:</strong></h6></ion-label>
+          <div>
+            <ion-text boolean="true">
+              <ion-textarea name="nombres" inputmode="text" [(ngModel)]="registro.nombres" ></ion-textarea>
+            </ion-text>
+          </div>
+        </ion-item>
+        <ion-item *ngIf="!ingresarEnable">
+          <ion-label position="floating"><h6><strong>Apellidos:</strong></h6></ion-label>
+          <div>
+            <ion-text boolean="true">
+              <ion-textarea name="apellidos" inputmode="text" [(ngModel)]="registro.apellidos" ></ion-textarea>
+            </ion-text>
+          </div>
+        </ion-item>
+        <ion-item *ngIf="!ingresarEnable">
+          <ion-label position="floating"><h6><strong>Numero de Identificacion:</strong></h6></ion-label>
+          <div>
+            <ion-text boolean="true">
+              <ion-textarea name="identificacion" inputmode="number" [(ngModel)]="registro.numidenti" ></ion-textarea>
+            </ion-text>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h6><strong>Correo:</strong></h6></ion-label>
+          <div>
+            <ion-text boolean="true">
+              <ion-textarea required="true" name="email" inputmode="email" [(ngModel)]="registro.email" ></ion-textarea>
+            </ion-text>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h6><strong>Contraseña:</strong></h6></ion-label>
+          <div *ngIf="mostrar">
+            <ion-text boolean="true">
+              <ion-input required="true" name="contraseña" type="password" [(ngModel)]="registro.password" ></ion-input>
+            </ion-text>
+          </div>
+          <div *ngIf="!mostrar">
+            <ion-text boolean="true">
+              <ion-textarea required="true" name="contraseña" inputmode="text" [(ngModel)]="registro.password" ></ion-textarea>
+            </ion-text>
+          </div>
+          <ion-buttons slot="end">
+            <ion-button *ngIf="mostrar==true" (click)="mostrar=false">
+              <ion-icon name="eye-off-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="mostrar==false" (click)="mostrar=true">
+              <ion-icon name="eye-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+        <ion-item *ngIf="!ingresarEnable">
+          <ion-label position="floating">Numero de Casa: </ion-label>
+          <ion-select name="casa" [(ngModel)]="registro.casa" interface="popover">
+            <ion-select-option [value]="1">1</ion-select-option>
+            <ion-select-option [value]="2">2</ion-select-option>
+            <ion-select-option [value]="3">3</ion-select-option>
+            <ion-select-option [value]="4">4</ion-select-option>
+            <ion-select-option [value]="5">5</ion-select-option>
+            <ion-select-option [value]="6">6</ion-select-option>
+            <ion-select-option [value]="7">7</ion-select-option>
+            <ion-select-option [value]="8">8</ion-select-option>
+            <ion-select-option [value]="9">9</ion-select-option>
+            <ion-select-option [value]="10">10</ion-select-option>
+            <ion-select-option [value]="11">11</ion-select-option>
+            <ion-select-option [value]="12">12</ion-select-option>
+            <ion-select-option [value]="13">13</ion-select-option>
+            <ion-select-option [value]="14">14</ion-select-option>
+            <ion-select-option [value]="15">15</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="!ingresarEnable">
+          <ion-label position="floating"><h6><strong>Fecha de Nacimiento: </strong></h6>
+          </ion-label>
+          <ion-input value="disabled" [value]="registro.fechanacimiento"></ion-input>
+          <ion-button fill="clear" id="open-hfinal">
+            <ion-icon color="primary" icon="calendar"></ion-icon>
+          </ion-button>
+          <ion-popover trigger="open-hfinal" show-backdrop="false">
+            <ng-template>
+              <ion-datetime
+                #popoverDatetime
+                presentation="date"
+                (ionChange)="registro.fechanacimiento = formatDate(popoverDatetime.value)"
+              >
+              </ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-card-content style="margin-bottom: 0px; border: 0px;">
+      <ion-button *ngIf="ingresarEnable" (click)="ingresar()" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+        Iniciar Sesion
+      </ion-button>
+      <ion-button *ngIf="ingresarEnable" (click)="ingresarEnable = false" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+        ¿No se encuentra registrado?
+      </ion-button>
+      <ion-text *ngIf="ingresarEnable" [routerLink]="['/recucontra']" color="primary">
+        <h6>¿Quiere restablecer la Contraseña?</h6>
+      </ion-text>
+      <ion-button *ngIf="!ingresarEnable" (click)="registrarse()" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+        Registrar Usuario
+      </ion-button>
+      <ion-button *ngIf="!ingresarEnable" (click)="ingresarEnable = true" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+        ¿Ya tiene una cuenta?
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,2130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon color="primary" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title><strong>PARQUEADERO</strong></ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="Diario" scrollable="true" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="Diario">
+        <ion-label>Diario</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Semanal">
+        <ion-label>Semanal</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Quincenal">
+        <ion-label>Quincenal</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Mensual">
+        <ion-label>Mensual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Semestral">
+        <ion-label>Semestral</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Anual">
+        <ion-label>Anual</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="selectedSegment == 'Diario'">
+    <ion-segment value="1" (ionChange)="Diario($event)">
+      <ion-segment-button value="1">
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="3">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentdia === '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarDiarioCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of diariocasa">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentdia == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarDiarioIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of diarioindi">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentdia == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of diario">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-card *ngIf="selectedSegment == 'Semanal'">
+    <ion-segment value=1 (ionChange)="Semanal($event)">
+      <ion-segment-button value=1>
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=2>
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=3>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentwee == '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarSemanalCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semanalcasa">
+        <ion-col *ngIf="nuevos.mes<=diasem2" size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentwee == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarSemanalIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semanalindi">
+        <ion-col *ngIf="nuevos.mes<=diasem2" size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentwee == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semanal">
+        <ion-col *ngIf="nuevos.mes<=diasem2" size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>  
+  <ion-card *ngIf="selectedSegment == 'Quincenal'">
+    <ion-segment value='1' (ionChange)="Quincenal($event)">
+      <ion-segment-button value='1'>
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value='2'>
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value='3'>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentqui == '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarQuincenalCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of quincenalcasa">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentqui == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarQuincenalIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of quincenalindi">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentqui == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of quincenal">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-card *ngIf="selectedSegment == 'Mensual'">
+    <ion-segment value=1 (ionChange)="Mensual($event)">
+      <ion-segment-button value=1>
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=2>
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=3>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentmen == '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarMensualCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of mensualcasa">
+        <ion-col *ngIf="nuevos.mes<=diasem2" size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentmen == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarMensualIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of mensualindi">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentmen == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of mensual">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-card *ngIf="selectedSegment == 'Semestral'">
+    <ion-segment value=1 (ionChange)="Semestral($event)">
+      <ion-segment-button value=1>
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=2>
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=3>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentsem == '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarSemestralCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semestralcasa">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentsem == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarSemestralIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semestralindi">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentsem == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of semestral">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-card *ngIf="selectedSegment == 'Anual'">
+    <ion-segment value=1 (ionChange)="Anual($event)">
+      <ion-segment-button value=1>
+        <ion-label>Casa</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=2>
+        <ion-label>Individual</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value=3>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div *ngIf="selectedSegmentanu == '1'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el numero de la casa?</ion-label>
+        <ion-select [(ngModel)]="casa" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+          <ion-select-option [value]="6">6</ion-select-option>
+          <ion-select-option [value]="7">7</ion-select-option>
+          <ion-select-option [value]="8">8</ion-select-option>
+          <ion-select-option [value]="9">9</ion-select-option>
+          <ion-select-option [value]="10">10</ion-select-option>
+          <ion-select-option [value]="11">11</ion-select-option>
+          <ion-select-option [value]="12">12</ion-select-option>
+          <ion-select-option [value]="13">13</ion-select-option>
+          <ion-select-option [value]="14">14</ion-select-option>
+          <ion-select-option [value]="15">15</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarAnualCasa(casa)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of anualcasa">
+        <ion-col *ngIf="nuevos.mes<=diasem2" size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentanu == '2'">
+      <ion-item>
+        <ion-label position="floating">¿Cual es el nombre del residente?</ion-label>
+        <ion-select [(ngModel)]="persona" interface="popover">
+          <ion-select-option *ngFor="let nuevos of usuarios" [value]="nuevos.uid">{{nuevos.nombres}} {{nuevos.apellidos}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-buttons>
+        <ion-button (click)="BuscarAnualIndi(persona)">
+          <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of anualindi">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="selectedSegmentanu == '3'">
+      <ion-row style="background: #c4c4c4;" *ngFor="let nuevos of anual">
+        <ion-col size="12" size-md>
+          <ion-card *ngIf="nuevos.entrasali==='Salio'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(90, 0, 0);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+          <ion-card *ngIf="nuevos.entrasali==='Entro'">
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>UID: </strong>{{nuevos.id}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Nombres: </strong>{{nuevos.nombres}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Apellidos: </strong>{{nuevos.apellidos}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Cedula: </strong>{{nuevos.cedula}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Tipo: </strong>{{nuevos.tipo}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Frecuencia: </strong>{{nuevos.finvitado}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Fecha de Salida: </strong>{{nuevos.fecha}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Hora de Salida: </strong>{{nuevos.hora}}</h6>
+              </ion-text>
+            </div>
+            <div style="margin: 10px   10px;">
+              <ion-text style="color: rgb(40, 160, 46);">
+                <h6><strong>Automovil: </strong>{{nuevos.auto}}</h6>
+              </ion-text>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+</ion-content>
+

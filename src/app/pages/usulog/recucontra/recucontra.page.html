@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header class="text-center">
+      <ion-card-title><strong>DIGITE SU CUENTA</strong></ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="text-center" style="margin-bottom: 0px; border: 0px;">
+      <div>
+        <ion-text>
+          <ion-input style="background: rgb(240, 240, 240);" required="true" name="email" type="email" [formControl]="userEmail"></ion-input>
+        </ion-text>
+      </div>
+      <ion-text>
+        <ion-button (click)="resetPass()" style="margin-bottom: 0px; border: 0px;" fixed shape="round">
+            <h5>Solicitar un restablecimiento</h5>
+        </ion-button>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+  <ng-template #loading>
+    <div class="text-center">
+      <h3><strong>
+        Loading...
+      </strong></h3>
+    </div>
+  </ng-template>
+</ion-content>

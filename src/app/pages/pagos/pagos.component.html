@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-text><h5><strong>REGISTRO DE PAGOS</strong></h5></ion-text>
+        <ion-buttons slot="start">
+            <ion-button (click)="openmenu()">
+                <ion-icon color="primary" slot="icon-only" name="menu-sharp"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row *ngFor="let nuevos of pagos">
+        <ion-col size="12" size-md>
+            <ion-card>
+                <div style="margin: 10px   10px;">
+                    <ion-text *ngIf="nuevos.estado == true"><h6><strong>Estado de Pago: </strong>
+                        <h6 style="color: rgb(40, 160, 46);">Pago Autorizado</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == false"><h6><strong>Estado de Pago:</strong>
+                        <h6 style="color: rgb(90, 0, 0);">Pago No Autorizado</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == null"><h6><strong>Estado de Pago:</strong>
+                        <h6 style="color: rgb(240, 210, 39);">Pago Sin Revisar</h6>
+                    </h6></ion-text>
+                    <ion-text *ngIf="nuevos.estado == false"><h6><strong>Causa de No Atorizo: </strong>{{nuevos.causa}}</h6></ion-text>
+                    <ion-text><h6><strong>Pagado por: </strong>{{nuevos.nombres}} {{nuevos.apellidos}}</h6></ion-text>
+                    <ion-text><h6><strong>Numero del Comprobante: </strong>{{nuevos.numcomprob}}</h6></ion-text>
+                    <ion-text><h6><strong>Cantidad Abonada: </strong>{{nuevos.canti | currency: '$ '}}</h6></ion-text>
+                    <ion-text><h6><strong>Motivo de Pago: </strong>{{nuevos.motiv}}</h6></ion-text>
+                </div>
+                <ion-toolbar style="margin: 0px   5px;">
+                    <ion-text><h6><strong>
+                        <div style="margin: 5px;">
+                            <ion-icon name="calendar"></ion-icon>{{nuevos.fecha}} 
+                        </div> 
+                        <div style="margin: 5px;">
+                            <ion-icon name="time"></ion-icon>{{nuevos.hora}}
+                        </div>
+                    </strong></h6></ion-text>
+                </ion-toolbar>
+                <ion-buttons>
+                    <ion-button (click)="nuevo = nuevos; enableNuevo = true" shape="round">
+                        <ion-icon slot="end" name="brush"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>
+<div>
+    <ion-item-divider>
+        <ion-buttons slot="end">
+            <ion-button color="danger" (click)="enableNuevo = false" shape="round">
+                <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <div>
+            <ion-button slot="start" *ngFor="let usuario of usuarios" (click)="nueva(usuario); enableNuevo = true" color="success" shape="round">
+                NUEVO
+            </ion-button>
+        </div>
+    </ion-item-divider>
+    <div *ngIf="enableNuevo">
+        <ion-card *ngFor="let usuario of usuarios">
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Numero del Comprobante</strong> 
+                </ion-label>
+                <ion-input [(ngModel)]="nuevo.numcomprob" type="number" placeholder="Digite el numero del Comprobante">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Cantidad Abonada</strong> 
+                </ion-label>
+                <ion-input [(ngModel)]="nuevo.canti" type="number" placeholder="Digite la cantidad abonada">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="floating">
+                    <strong>Motivo de Pago</strong> 
+                </ion-label>
+                <ion-textarea [(ngModel)]="nuevo.motiv" enterkeyhint type="text" placeholder="Digite su motivo de Pago">
+                </ion-textarea>
+            </ion-item>
+            <ion-button (click)="guardarPago()" color="primary" shape="round">
+                <ion-icon slot="end" name="save"></ion-icon>
+                Guardar
+            </ion-button>
+        </ion-card>
+  </div>
+</div>
+

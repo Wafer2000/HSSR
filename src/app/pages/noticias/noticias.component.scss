@@ -1,0 +1,32 @@
+ion-content{
+  --background: url("/assets/img/marca_de_agua.png") 0 0/100% 100% no-repeat !important;
+}
+  
+ion-label{
+  color: #c4c4c4 !important;
+}
+
+ion-item{
+  margin-top: 5px;
+}
+
+ion-datetime {
+  height: auto;
+  width: auto;
+  max-width: 350px;
+}
+
+ion-modal {
+--width: 200px;
+--height: 300px;
+--border-radius: 8px;
+}
+
+ion-modal ion-datetime {
+height: 300px;
+}
+
+:root {
+--ion-safe-area-top: 20px;
+--ion-safe-area-bottom: 22px;
+}

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><strong>RESIDENTES</strong></ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon color="primary" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalServicios()">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="map"></ion-icon>
+            <strong>Servicios</strong>
+          </ion-card-title>
+          <ion-card-subtitle>
+            Acceda al registro de entrada y salida de los diferentes sevicios(Piscina, Gimnasio y Centro de Recreacion)
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalParqueadero()">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="car"></ion-icon>
+            <strong>Parqueadero</strong>
+          </ion-card-title>
+          <ion-card-subtitle>
+            Acceda al registro de entrada y salida del Parqueadero
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-md>
+      <ion-card button=true (click)="presentModalPrincipal()">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="enter-sharp"></ion-icon>
+            <strong>Entrada Principal</strong>
+          </ion-card-title>
+          <ion-card-subtitle>
+            Acceda al registro de entrada y salida de la Entrada Principal
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

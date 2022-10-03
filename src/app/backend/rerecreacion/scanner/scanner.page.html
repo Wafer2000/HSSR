@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button expand="block" color="dark" (click)="scaner()">Escanear Código</ion-button>
+  <ion-row *ngFor="let horario of horarios">
+    <ion-col *ngFor="let actualiza of actualizar" size="12" size-md>
+      <ion-card>
+        <div style="padding: 10px">
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>ID Residente: </strong>
+              {{horario.uid}}
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Nombre Completo: </strong> 
+              {{horario.nombres}} {{horario.apellidos}}
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Hora Apartada: </strong> 
+              {{horario.hcupo}} 
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Cupos Apartados: </strong> 
+              {{horario.cant}}
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Hora en que se realizo: </strong> 
+              {{horario.hora}}
+            </h6></ion-text>
+          </div>
+          <div style="margin: 10px   10px;">
+            <ion-text><h6><strong>Fecha en que se realizo: </strong> 
+              {{horario.fecha}}
+            </h6></ion-text>
+          </div>
+        </div>
+        <ion-buttons>
+          <ion-button (click)="EntradaResi(horario)" color="success" shape="round">
+            <ion-icon name="log-in-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="SalidaResi(horario, actualiza)" color="danger" shape="round">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+

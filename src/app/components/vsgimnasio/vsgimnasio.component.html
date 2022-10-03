@@ -1,0 +1,53 @@
+<ion-col size="12">
+  <ion-card *ngIf="modelos">
+    <div>
+      <ion-item >
+        <ion-label position="floating">Desde:</ion-label>
+        <ion-select [(ngModel)]="modelos.hinicial" interface="popover">
+          <ion-select-option *ngFor="let horario of horarios" [value]="horario.hinicial">{{horario.hinicial}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item >
+        <ion-label position="floating">Hasta:</ion-label>
+        <ion-select [(ngModel)]="modelos.hfinal" interface="popover">
+          <ion-select-option *ngFor="let horario of horarios" [value]="horario.hfinal">{{horario.hfinal}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Residentes: </ion-label>
+        <ion-select [(ngModel)]="resi" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Invitados: </ion-label>
+        <ion-select [(ngModel)]="invi" interface="popover">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div *ngIf="!cuponuevo">
+        <ion-button class="enviar" color="danger" *ngFor="let usuario of usuarios" (click)="apartarCupo(modelos, resi, invi, usuario)" shape="round">
+          <ion-text style="color: rgb(255, 255, 255);">
+            <h1>Enviar</h1>
+          </ion-text>
+          <i></i>
+        </ion-button>
+      </div>
+      <div *ngIf="cuponuevo">
+        <ion-button class="enviado" color="success" shape="round">
+          <ion-text style="color: rgb(255, 255, 255);">
+            <h1>Enviado</h1>
+          </ion-text>
+        </ion-button>
+      </div>
+    </div>
+  </ion-card>
+</ion-col>
